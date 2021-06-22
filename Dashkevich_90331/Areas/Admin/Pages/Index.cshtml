@@ -1,0 +1,67 @@
+﻿@page
+@model Dashkevich_90331.Areas.Admin.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p class="mt-2">
+    <a asp-page="Create" class="btn btn-outline-info">
+        <span class="fa fa-plus-circle"> Добавить</span>
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feed[0].FeedName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feed[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feed[0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feed[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feed[0].Group)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Feed) {
+        <tr>
+            <td>
+                <img src="~/images/@item.Image" alt="NoImage" width="20"/>
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FeedName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group.FeedGroupId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.FeedId" class="btn btn-outline-info">
+                    <span class="fas fa-edit"></span>
+                </a>
+                <a asp-page="./Delete" asp-route-id="@item.FeedId" class="btn btn-outline-danger">
+                    <span class="fas fa-trash-alt"></span>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,71 @@
+﻿@page "{id:int}"
+@model Dashkevich_90331.Areas.Admin.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Feed</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Feed.FeedId" />
+            <div class="form-group">
+                @if (!string.IsNullOrEmpty(Model.Feed.Image))
+                {
+                    <img src=~/Images/@Model.Feed.Image
+                         alt="NoSuchFile" width="150" />
+                }
+                else
+                {
+                    <h4>Файл изображения не задан</h4>
+                }
+                <div class="custom-file mt-3">
+                    <input type="file" class="custom-file-input"
+                           asp-for="Feed.Image" id="customFile">
+                    <label class="custom-file-label" for="customFile">
+                        Выберите файл изображения
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feed.Description" class="control-label"></label>
+                <input asp-for="Feed.Description" class="form-control" />
+                <span asp-validation-for="Feed.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feed.Weight" class="control-label"></label>
+                <input asp-for="Feed.Weight" class="form-control" />
+                <span asp-validation-for="Feed.Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feed.Image" class="control-label"></label>
+                <input asp-for="Feed.Image" class="form-control" />
+                <span asp-validation-for="Feed.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Feed.FeedGroupId" class="control-label"></label>
+                <select asp-for="Feed.FeedGroupId" class="form-control" asp-items="ViewBag.FeedGroupId"></select>
+                <span asp-validation-for="Feed.FeedGroupId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts{
+    <script src="~/js/bs-custom-file-input.js"></script>
+    <script>
+        bsCustomFileInput.init();
+    </script>
+}
